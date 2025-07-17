@@ -20,8 +20,8 @@ os.environ["KIVY_NO_CONSOLELOG"] = "1"  # Disable Kivy console logging during do
 # -- Project information -----------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#project-information
 
-project = "lemon"
-copyright = "%Y, The LEMON project"
+project = "lemons"
+copyright = "%Y, The LEMONS project"
 author = "Oscar Maxime Alexandre"
 # release = "1.0.0"
 

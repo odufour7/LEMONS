@@ -38,10 +38,10 @@ def about() -> None:
     ROOT_DIR = current_file_path.parent.parent.parent.parent.absolute()
     st.markdown(f"## Overview of the {cst_app.PROJECT_NAME} project")
     st.markdown("""
-        The software release dubbed LEMON consists of:
+        The software release dubbed LEMONS consists of:
 
         1. **This online platform**
-        [https://crowdmecha.streamlit.app/](https://crowdmecha.streamlit.app/) to generate and visualise individual pedestrians
+        [https://lemons.streamlit.app/](https://lemons.streamlit.app/) to generate and visualise individual pedestrians
         (whose shapes are compatible with anthropometric data) or crowds.
 
         2. **A C++ library**

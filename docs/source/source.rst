@@ -2,7 +2,7 @@ Source
 ======
 
 The source code of the latest release is always available in our public
-`Git repository <https://github.com/odufour7/Shape.git>`__.
+`Git repository <https://github.com/odufour7/LEMONS.git>`__.
 
 Authors
 -------
@@ -19,7 +19,7 @@ This project is developed at the
 
 Citation
 --------
-If you use `LEMON`, we encourage you to cite or reference this work as you would any other scientific research. The package is the result of a significant amount of time and effort invested by the authors. Citing us helps measure the impact of the research and encourages others to use the library.
+If you use `LEMONS`, we encourage you to cite or reference this work as you would any other scientific research. The package is the result of a significant amount of time and effort invested by the authors. Citing us helps measure the impact of the research and encourages others to use the library.
 
 To cite this work, please use the following reference in bibtex format:
 
@@ -27,7 +27,7 @@ To cite this work, please use the following reference in bibtex format:
 
    @software{shapes_2025_14906931,
      author    = {Dufour, Oscar and Stapelle, Maxime and Nicolas, Alexandre},
-     title     = {LEMON - An open-source platform to generate non-circuLar, anthropometry-based pEdestrian shapes and simulate their Mechanical interactiONs in two dimensions},
+     title     = {LEMONS - An open-source platform to generate non-circuLar, anthropometry-based pEdestrian shapes and simulate their Mechanical interactiONS in two dimensions},
      month     = {jul},
      year      = {2025},
      publisher = {Zenodo},

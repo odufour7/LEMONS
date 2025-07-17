@@ -3,7 +3,7 @@
 Run the app locally
 ===================
 
-To set up, follow these steps after downloading the repository from `GitHub <https://github.com/odufour7/Shape.git>`__:
+To set up, follow these steps after downloading the repository from `GitHub <https://github.com/odufour7/LEMONS.git>`__:
 
 **1. Environment setup**
 

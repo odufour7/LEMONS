@@ -511,8 +511,11 @@ class Crowd:
             variable_orientation=variable_orientation,
         )
 
-        # Initially, all agents have 0° orientation (head facing right), so we need to rotate them to the desired direction
+        # Initially, all agents have 0° orientation (head facing right) and are at (0,0),
+        # so we need to rotate them to the desired direction and translate them to the center of the boundaries
         for current_agent in self.agents:
+            center_of_boundaries = self.boundaries.centroid if not self.boundaries.is_empty else Point(0.0, 0.0)
+            current_agent.translate(center_of_boundaries.x, center_of_boundaries.y)
             current_agent.rotate(desired_direction)
 
         Temperature = cst.INITIAL_TEMPERATURE
@@ -553,9 +556,13 @@ class Crowd:
             # Decrease the temperature at each iteration
             Temperature = max(0.0, Temperature - cst.ADDITIVE_COOLING)
 
-        # Translate all agents and wall to get the minimum x-coordinates and minimum y-coordinates at (0., 0.)
-        min_x = min(min(agent.shapes2D.get_geometric_shape().bounds[0] for agent in self.agents), self.boundaries.bounds[0])
-        min_y = min(min(agent.shapes2D.get_geometric_shape().bounds[1] for agent in self.agents), self.boundaries.bounds[1])
+        # If no boundaries translate all agents and wall to get the minimum x-coordinates and minimum y-coordinates at (0., 0.)
+        if self.boundaries.is_empty:
+            min_x = min(min(agent.shapes2D.get_geometric_shape().bounds[0] for agent in self.agents), self.boundaries.bounds[0])
+            min_y = min(min(agent.shapes2D.get_geometric_shape().bounds[1] for agent in self.agents), self.boundaries.bounds[1])
+        else:
+            min_x = min(x for x, _ in self.boundaries.exterior.coords)
+            min_y = min(y for _, y in self.boundaries.exterior.coords)
         self.translate_crowd(-min_x, -min_y)
 
     def unpack_crowd(self) -> None:

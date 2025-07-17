@@ -42,8 +42,8 @@ def setup_app() -> None:
         layout="wide",
         initial_sidebar_state="expanded",
         menu_items={
-            "Get Help": "https://github.com/odufour7/Shape",
-            "Report a bug": "https://github.com/odufour7/Shape/issues",
+            "Get Help": "https://github.com/odufour7/LEMONS",
+            "Report a bug": "https://github.com/odufour7/LEMONS/issues",
             "About": f"# {cst_app.PROJECT_NAME} Project " + ":flag-fr:",
         },
     )
@@ -132,9 +132,9 @@ def init_sidebar_looks() -> None:
     ROOT_DIR = current_file_path.parent.parent.parent.parent.absolute()
     logo_path = ROOT_DIR / "docs" / "source" / "_static" / "logo" / "logo_app.png"
     article_badge = "[![](https://badgen.net/badge/DOI/open%20access/orange)](https://scipost.org/SciPostPhysCodeb)"
-    doc_badge = "[![](https://badgen.net/static/DOC/lemon-docs/cyan?icon=https://icons.getbootstrap.com/icons/filetype-doc/)](https://shapes-crowd.readthedocs.io/en/latest/index.html)"
+    doc_badge = "[![](https://badgen.net/static/DOC/lemons-docs/cyan?icon=https://icons.getbootstrap.com/icons/filetype-doc/)](https://shapes-crowd.readthedocs.io/en/latest/index.html)"
     gh = "https://badgen.net/badge/icon/GitHub?icon=github&label"
-    repo = "https://github.com/odufour7/Shape"
+    repo = "https://github.com/odufour7/LEMONS"
     repo_badge = f"[![]({gh})]({repo})"
 
     c1, c2 = st.sidebar.columns((0.25, 0.8))

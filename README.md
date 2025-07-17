@@ -6,15 +6,14 @@
   </tr>
   <tr>
     <td align="left" style="width:100%;">
-      <!-- Your content goes here -->
     </td>
   </tr>
 </table>
 <div align="center">
 
 [![](https://badgen.net/badge/DOI/open%20access/orange)](https://scipost.org/SciPostPhysCodeb)
-[![](https://badgen.net/static/DOC/lemon-docs/cyan?icon=https://icons.getbootstrap.com/icons/filetype-doc/)](https://shapes-crowd.readthedocs.io/en/latest/index.html)
-[![](https://badgen.net/badge/icon/GitHub?icon=github&label)](https://github.com/odufour7/Shape)
+[![](https://badgen.net/static/DOC/lemons-docs/cyan?icon=https://icons.getbootstrap.com/icons/filetype-doc/)](https://shapes-crowd.readthedocs.io/en/latest/index.html)
+[![](https://badgen.net/badge/icon/GitHub?icon=github&label)](https://github.com/odufour7/LEMONS)
 [![](https://badgen.net/badge/🚀/Streamlit%20App/green)](https://crowdmecha.streamlit.app/)
 
 </div>
@@ -34,13 +33,13 @@ This project is developed at
 
 ## Citation
 
-If you use `LEMON`, we encourage you to cite or reference this work as you would any other scientific research. The package is a result of a huge amount of time and effort invested by the authors. Citing us allows us to measure the impact of the research and encourages others to use the library.
+If you use `LEMONS`, we encourage you to cite or reference this work as you would any other scientific research. The package is a result of a huge amount of time and effort invested by the authors. Citing us allows us to measure the impact of the research and encourages others to use the library.
 
 Cite us:
 ```
 @software{dufour_2025_14906931,
     author    = {Dufour, Oscar and Stapelle, Maxime and Nicolas, Alexandre},
-    title     = {LEMON - An open-source platform to generate non-circuLar, anthropometry-based pEdestrian shapes and simulate their Mechanical interactiONs in two dimensions},
+    title     = {LEMONS - An open-source platform to generate non-circuLar, anthropometry-based pEdestrian shapes and simulate their Mechanical interactiONS in two dimensions},
     month     = {jul},
     year      = {2025},
     publisher = {Zenodo},
@@ -50,13 +49,16 @@ Cite us:
 }
 ```
 
-<!-- ## Some use cases
-
-### pedestrian crowds -->
+## An example of a generated crowd
+<tr>
+  <td align="center" style="width:100%;">
+    <img src="./data/images/crowd_150_agents.png" width="450" alt="Project icon" style="display:block; margin:auto;">
+  </td>
+</tr>
 
 
 ## License
-Every part of `LEMON` is available under the [`CeCILL-B`](https://cecill.info/licences.fr.html) license.
+Every part of `LEMONS` is available under the [`CeCILL-B`](https://cecill.info/licences.fr.html) license.
 
 
 

@@ -2,10 +2,10 @@
 <Geometry>
     <Dimensions Lx="2.000" Ly="2.000"/>
     <Wall Id="0" MaterialId="concrete">
-        <Corner Coordinates="-1.000,-1.000"/>
-        <Corner Coordinates="1.000,-1.000"/>
-        <Corner Coordinates="1.000,1.000"/>
-        <Corner Coordinates="-1.000,1.000"/>
-        <Corner Coordinates="-1.000,-1.000"/>
+        <Corner Coordinates="0.000,0.000"/>
+        <Corner Coordinates="2.000,0.000"/>
+        <Corner Coordinates="2.000,2.000"/>
+        <Corner Coordinates="0.000,2.000"/>
+        <Corner Coordinates="0.000,0.000"/>
     </Wall>
 </Geometry>

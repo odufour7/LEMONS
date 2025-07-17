@@ -1,5 +1,5 @@
 cff-version: 1.3.4
-title: lemon
+title: lemons
 message: >-
   If you use this software, please cite it using the
   metadata from this file.
@@ -23,7 +23,7 @@ identifiers:
   - type: doi
     value: 10.1038/s41597-025-04732-3
 repository-code: >-
-  https://github.com/odufour7/Shape
+  https://github.com/odufour7/LEMONS
 abstract: >-
   The rise of large-scale events demands innovative safety tools
   to optimise crowd flow. Traditional models rely on oversimplified

@@ -33,7 +33,7 @@ SECOND_TAB_NAME: str = "Crowd"
 THIRD_TAB_NAME: str = "Anthropometry"
 FOURTH_TAB_NAME: str = "About"
 
-PROJECT_NAME: str = "LEMON"
+PROJECT_NAME: str = "LEMONS"
 
 # 2D / 3D shapes tab
 DEFAULT_PEDESTRIAN_HEIGHT: float = 170.0  # cm

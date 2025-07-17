@@ -1,7 +1,7 @@
 [project]
-name = "shapes"
+name = "lemons"
 version = "0.1.0"
-description = "shapes is a library to generate realistic crowds from anthropometric data (Python), and to simulate their mechanical interactions (C++)"
+description = "lemons is an open-source platform to generate non-circular, anthropometry-based pedestrian shapes and simulate their mechanical interactions in two dimensions"
 readme = "README.md"
 requires-python = ">=3.13"
 authors = [
