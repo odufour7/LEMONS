@@ -80,7 +80,7 @@ ShapeDataType: TypeAlias = (
     | dict[str, dict[str, ShapeType | MaterialType | float | Polygon | MultiPolygon]]
 )
 
-#: Represents the structure of acrowd-related data.
+#: Represents the structure of a crowd-related data.
 StaticCrowdDataType: TypeAlias = dict[str, dict[str, dict[str, AgentType | float | int | ShapeDataType]]]
 
 #: Represents the structure of dynamic crowd-related data.

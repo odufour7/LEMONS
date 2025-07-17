@@ -12,16 +12,16 @@
 <div align="center">
 
 [![](https://badgen.net/badge/DOI/open%20access/orange)](https://scipost.org/SciPostPhysCodeb)
-[![](https://badgen.net/static/DOC/lemons-docs/cyan?icon=https://icons.getbootstrap.com/icons/filetype-doc/)](https://shapes-crowd.readthedocs.io/en/latest/index.html)
+[![](https://badgen.net/static/DOC/lemons-docs/cyan?icon=https://icons.getbootstrap.com/icons/filetype-doc/)](https://lemons.readthedocs.io/en/latest/index.html)
 [![](https://badgen.net/badge/icon/GitHub?icon=github&label)](https://github.com/odufour7/LEMONS)
-[![](https://badgen.net/badge/🚀/Streamlit%20App/green)](https://crowdmecha.streamlit.app/)
+[![](https://badgen.net/badge/🚀/Streamlit%20App/green)](https://lemons.streamlit.app/)
 
 </div>
 
 
 ## Documentation
 
-Comprehensive installation guidelines, tutorials, and a complete API reference are available in our [official documentation](https://shapes-crowd.readthedocs.io/en/latest/).
+Comprehensive installation guidelines, tutorials, and a complete API reference are available in our [official documentation](https://lemons.readthedocs.io/en/latest/).
 ## Authors
 
 * Oscar Dufour
