@@ -1,6 +1,6 @@
 [project]
 name = "lemons"
-version = "0.1.0"
+version = "1.0.0"
 description = "lemons is an open-source platform to generate non-circular, anthropometry-based pedestrian shapes and simulate their mechanical interactions in two dimensions"
 readme = "README.md"
 requires-python = ">=3.13"

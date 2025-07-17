@@ -37,15 +37,12 @@ If you use `LEMONS`, we encourage you to cite or reference this work as you woul
 
 Cite us:
 ```
-@software{dufour_2025_14906931,
+@software{lemons_2025_14906931,
     author    = {Dufour, Oscar and Stapelle, Maxime and Nicolas, Alexandre},
     title     = {LEMONS - An open-source platform to generate non-circuLar, anthropometry-based pEdestrian shapes and simulate their Mechanical interactiONS in two dimensions},
     month     = {jul},
     year      = {2025},
-    publisher = {Zenodo},
-    version   = {v1.3.1},
-    doi       = {10.5281/zenodo.7559393},
-    url       = {https://doi.org/10.5281/zenodo.7559393}
+    version   = {v1.0.0},
 }
 ```
 
