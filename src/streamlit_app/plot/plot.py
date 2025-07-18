@@ -623,10 +623,10 @@ def display_crowd2D(crowd: Crowd) -> mfig.Figure:
 
 def display_crowd3D_slices_by_slices(crowd: Crowd) -> go.Figure:
     """
-    Generate an animated Plotly figure of a 3D crowd made of layers of 2D polygons at different altitutde.
+    Generate an animated Plotly figure of a 3D crowd made of layers of 2D polygons at different altitude.
 
-    For a given set of altitutdes, this function plots all polygons at that altitutde. If there is not a
-    polygon for a given agent at that specific altitude, then the polygon with the nearest altitutde is shown.
+    For a given set of altitutdes, this function plots all polygons at that altitude. If there is not a
+    polygon for a given agent at that specific altitude, then the polygon with the nearest altitude is shown.
     No interpolation is performed. The result is an animated Plotly figure, where each animation frame
     corresponds to a different altitude.
 
@@ -638,8 +638,8 @@ def display_crowd3D_slices_by_slices(crowd: Crowd) -> go.Figure:
     Returns
     -------
     go.Figure
-        An animated Plotly figure with a slider to select the altitutde. Each frame displays all polygons of
-        all agents at a given altitutde. Polygon color encodes agent area. Agent indices are labeled at their centroid.
+        An animated Plotly figure with a slider to select the altitude. Each frame displays all polygons of
+        all agents at a given altitude. Polygon color encodes agent area. Agent indices are labeled at their centroid.
     """
     # Normalize color by 2D area
     norm = Normalize(
@@ -679,10 +679,12 @@ def display_crowd3D_slices_by_slices(crowd: Crowd) -> go.Figure:
 
     all_unique_altitudes: NDArray[np.int64] = np.unique(all_altitudes)
     height_agent_traces = []
+    total_covered_area_per_altitude = {}
 
     # Loop through each height and create traces for each agent
     for height in all_unique_altitudes:
         traces = []
+        sum_area = 0
         for idx, (agent, max_height) in enumerate(zip(crowd.agents, agent_heights, strict=False)):
             if height > max_height:
                 continue
@@ -690,6 +692,7 @@ def display_crowd3D_slices_by_slices(crowd: Crowd) -> go.Figure:
             # Get the multipolygon for this height, or use the last one
             multi_polygon = agent.shapes3D.shapes.get(height, current_polygons[idx])
             current_polygons[idx] = multi_polygon
+            sum_area += multi_polygon.area
 
             # Check if multi_polygon is a MultiPolygon object
             if not isinstance(multi_polygon, MultiPolygon) or multi_polygon.is_empty:
@@ -728,38 +731,38 @@ def display_crowd3D_slices_by_slices(crowd: Crowd) -> go.Figure:
                     hoverinfo="skip",
                 )
             )
-
         height_agent_traces.append(traces)
+        total_covered_area_per_altitude[height] = sum_area
 
     # Create a Plotly figure with all traces and update the hover template
     fig = go.Figure()
-    for traces in height_agent_traces:
-        for trace in traces:
-            fig.add_trace(trace)
+    [fig.add_trace(trace) for traces in height_agent_traces for trace in traces]
     fig.update_traces(hovertemplate="<b>centroid</b><br>" + "x: %{x:.2f} cm<br>" + "y: %{y:.2f} cm<extra></extra>")
 
-    # Get the number of traces for each height
+    # Get the number of traces for each altitude
     n_traces_per_height = [len(traces) for traces in height_agent_traces]
     cum_traces = np.cumsum([0] + n_traces_per_height)
     total_traces = cum_traces[-1]
 
-    # Build slider steps: only show traces for the selected height
-    steps = [
-        {
+    # Create steps for the slider
+    steps = []
+    for i, height in enumerate(all_unique_altitudes):
+        visible = [cum_traces[i] <= j < cum_traces[i + 1] for j in range(total_traces)]
+        area = int(total_covered_area_per_altitude.get(height, 0))
+        step = {
             "method": "update",
-            "args": [{"visible": [cum_traces[i] <= j < cum_traces[i + 1] for j in range(total_traces)]}],
+            "args": [{"visible": visible}, {"title.text": f"Horizontal slices | Covered area: {area} cm² | Altitude: {height} cm"}],
             "label": f"{height} cm",
         }
-        for i, height in enumerate(all_unique_altitudes)
-    ]
+        steps.append(step)
 
-    # Create the slider
+    # Create a slider for altitude selection
     mid_min_agent_height = int(np.min(agent_heights) * cst.HEIGHT_OF_BIDELTOID_OVER_HEIGHT)
     slider_start_index = np.abs(all_unique_altitudes - mid_min_agent_height).argmin()
     sliders = [
         {
             "active": slider_start_index,
-            "currentvalue": {"prefix": "Altitude: "},
+            "currentvalue": {"prefix": "Altitude: "},  # Appears only here, no covered area
             "pad": {"t": 50},
             "steps": steps,
         }

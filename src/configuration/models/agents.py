@@ -420,7 +420,6 @@ class Agent:
         """
         rotated_body3D: dict[float, MultiPolygon] = {}
         centroid_body = self.get_centroid_body3D()
-        # check if self.shapes3D is shapes3D object
         if self.shapes3D is None:
             raise ValueError("No 3D shapes available for the agent.")
         if not isinstance(self.shapes3D, Shapes3D):

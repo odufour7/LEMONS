@@ -337,6 +337,9 @@ def plot_and_download_crowd2D(current_crowd: Crowd) -> None:
             use_container_width=True,
         )
 
+    # Display information about the covered area
+    st.info(f"Total area covered by the agents: {current_crowd.calculate_covered_area():.2f} cm²", icon="ℹ️")
+
 
 def agent_statistics_state(new_boundaries: Polygon, num_agents: int) -> None:
     """

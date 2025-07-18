@@ -1,14 +1,14 @@
 <Agents>
     <Agent Id="0">
-        <Kinematics Position="1.82432,1.1241" Velocity="0.971472,0.140306" Theta="2.70244" Omega="1.40999" />
+        <Kinematics Position="1.78683,1.05445" Velocity="0.139988,-0.304076" Theta="5.23549" Omega="1.42642" />
     <Dynamics Fp="100,100" Mp="10" /></Agent>
     <Agent Id="1">
-        <Kinematics Position="1.75653,1.85703" Velocity="-0.0450749,0.0634501" Theta="1.37275" Omega="0.924692" />
+        <Kinematics Position="1.78182,1.75342" Velocity="-0.171526,-0.0155451" Theta="3.01587" Omega="0.416291" />
     <Dynamics Fp="100,100" Mp="10" /></Agent>
     <Agent Id="2">
-        <Kinematics Position="1.56296,1.57307" Velocity="0.273875,-0.184371" Theta="2.55664" Omega="1.69585" />
+        <Kinematics Position="1.5157,1.73917" Velocity="-0.19448,0.201464" Theta="6.17118" Omega="1.90364" />
     <Dynamics Fp="100,100" Mp="10" /></Agent>
     <Agent Id="3">
-        <Kinematics Position="1.69408,1.37413" Velocity="0.612818,0.0386824" Theta="2.76439" Omega="1.70767" />
+        <Kinematics Position="1.85688,1.36951" Velocity="0.100113,0.0166624" Theta="5.77396" Omega="1.03865" />
     <Dynamics Fp="100,100" Mp="10" /></Agent>
 </Agents>

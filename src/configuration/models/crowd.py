@@ -270,6 +270,20 @@ class Crowd:
 
         return interpenetration_between_agents, interpenetration_with_boundaries
 
+    def calculate_covered_area(self) -> float:
+        """
+        Calculate the total area covered by all 2D agents in the crowd.
+
+        Returns
+        -------
+        float
+            The total area covered by all 2D agents.
+        """
+        total_area = 0.0
+        for agent in self.agents:
+            total_area += agent.shapes2D.get_geometric_shape().area
+        return total_area
+
     @staticmethod
     def calculate_contact_force(agent_centroid: Point, other_centroid: Point) -> NDArray[np.float64]:
         """

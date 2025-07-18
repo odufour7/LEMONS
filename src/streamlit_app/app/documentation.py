@@ -47,8 +47,9 @@ def about() -> None:
         2. **A C++ library**
         to compute mechanical contact forces in two dimensions and then evolve the crowd according to Newton's equation of motion.
 
-        3. **A Python interface**
-        to import anthropometric data, generate and visualise crowds, and simulate their dynamics via simple calls to the C++ library.
+        3. **A Python wrapper**
+        to manage and automate crowd simulations through simple calls to the C++ library, with visualisation
+        enabled by exporting results to [ChAOS](https://project.inria.fr/crowdscience/project/ocsr/chaos/) input format.
         """)
 
     visible_human_proj_url = "https://www.nlm.nih.gov/research/visible/visible_human.html"
