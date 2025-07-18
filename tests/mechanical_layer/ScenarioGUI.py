@@ -433,7 +433,7 @@ class Scenario:
                     agentsFile.write(
                         f'\t<Agent Type="{agent_kivy.current_agent_big.agent_type.name}" Id="{a}" Mass="{mass:.2f}" '
                         f'MomentOfInertia="{moment_of_inertia:.2f}" FloorDamping="2.0" '
-                        'AngularDamping="5.0">\n'
+                        'AngularDamping="20.0">\n'
                     )
                     all_shape_params = agent_kivy.current_agent_big.shapes2D.get_additional_parameters()
                     delta_g_to_gi: dict[str, tuple[float, float]] = agent_kivy.current_agent_big.get_delta_GtoGi()
@@ -1249,13 +1249,5 @@ if __name__ == "__main__":
     nFiles = len(files)
     filesInput = cast(list[ctypes.c_char_p | bytes | None], (ctypes.c_char_p * nFiles)())
     filesInput[:] = files
-
-    MyApp().run()
-
-    MyApp().run()
-
-    MyApp().run()
-
-    MyApp().run()
 
     MyApp().run()

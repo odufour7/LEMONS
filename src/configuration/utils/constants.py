@@ -50,7 +50,7 @@ NB_FUNCTION_EVALS: int = 80  # Number of function evaluations
 DISK_NUMBER: int = 5
 
 DEFAULT_FLOOR_DAMPING: float = 2.0  # Damping coefficient for the floor
-DEFAULT_ANGULAR_DAMPING: float = 5.0  # Damping coefficient for the angular velocity
+DEFAULT_ANGULAR_DAMPING: float = 20.0  # Damping coefficient for the angular velocity
 EPSILON_SMOOTHING_KNEES: float = 8.0  # Small value for smoothing
 EPSILON_SMOOTHING_NECK: float = 2.0  # Small value for smoothing
 NECK_HEIGHT_MALE: float = 160.0  # Height of the neck in cm
@@ -61,13 +61,13 @@ KNEES_HEIGHT_FEMALE: float = 50.0  # Height of the knees in cm
 HEIGHT_OF_BIDELTOID_OVER_HEIGHT: float = 151.6 / 186.6  # Ratio of the height of the bideltoid to the agent height (male = female)
 
 # Material properties
-YOUNG_MODULUS_CONCRETE: float = 1.7e10  # Pa (https://www.engineeringtoolbox.com/young-modulus-d_417.html)
-YOUNG_MODULUS_HUMAN_NAKED: float = 3.05e6  # Pa (https://doi.org/10.1103/PhysRevE.87.063305)
-YOUNG_MODULUS_HUMAN_CLOTHES: float = 3.05e6  # Pa
+YOUNG_MODULUS_CONCRETE: float = 1.7e10  # N/m
+YOUNG_MODULUS_HUMAN_NAKED: float = 2.6e6  # N/m
+YOUNG_MODULUS_HUMAN_CLOTHES: float = 3.05e6  # N/m
 
-SHEAR_MODULUS_CONCRETE: float = 7.10e9  # Pa
-SHEAR_MODULUS_HUMAN_NAKED: float = 1.02e6  # Pa, incompressibility hypothesis, nu = 0.5
-SHEAR_MODULUS_HUMAN_CLOTHES: float = 1.02e6  # Pa, incompressibility hypothesis, nu = 0.5
+SHEAR_MODULUS_CONCRETE: float = 7.10e9  # N/m
+SHEAR_MODULUS_HUMAN_NAKED: float = 7.5e5  # N/m, incompressibility hypothesis, nu = 0.5
+SHEAR_MODULUS_HUMAN_CLOTHES: float = 1.02e6  # N/m, incompressibility hypothesis, nu = 0.5
 
 GAMMA_NORMAL: float = 1.3 * 10**4  # Damping coefficient for normal contact (N/(m/s))
 GAMMA_TANGENTIAL: float = 1.3 * 10**4  # Damping coefficient for tangential contact (N/(m/s))
