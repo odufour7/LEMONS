@@ -47,23 +47,17 @@ Note that when calling the library, an absolute path to the Parameters file shou
 <?xml version="1.0" encoding="utf-8"?>
 <Materials>
     <Intrinsic>
-        <Material Id="0" Name="asphalt" YoungModulus="1000000.0" ShearModulus="0.3"/>
-        <Material Id="1" Name="stone" YoungModulus="1000000.0" ShearModulus="0.3"/>
-        <Material Id="2" Name="iron" YoungModulus="1000000.0" ShearModulus="0.3"/>
-        <Material Id="3" Name="wood" YoungModulus="1000000.0" ShearModulus="0.3"/>
-        <Material Id="4" Name="human" YoungModulus="1000000.0" ShearModulus="0.3"/>
+        <Material Id="concrete" YoungModulus="1.70e+10" ShearModulus="7.10e+09"/>
+        <Material Id="human_clothes" YoungModulus="3.05e+06" ShearModulus="1.02e+06"/>
+        <Material Id="human_naked" YoungModulus="2.60e+06" ShearModulus="7.50e+05"/>
     </Intrinsic>
     <Binary>
-        <Contact Id1="0" Id2="1" GammaNormal="1.300e+04" GammaTangential="1.300e+04" KineticFriction="0.50000"/>
-        <Contact Id1="0" Id2="2" GammaNormal="1.300e+04" GammaTangential="1.300e+04" KineticFriction="0.50000"/>
-        <Contact Id1="0" Id2="3" GammaNormal="1.300e+04" GammaTangential="1.300e+04" KineticFriction="0.50000"/>
-        <Contact Id1="0" Id2="4" GammaNormal="1.300e+04" GammaTangential="1.300e+04" KineticFriction="0.50000"/>
-        <Contact Id1="1" Id2="2" GammaNormal="1.300e+04" GammaTangential="1.300e+04" KineticFriction="0.50000"/>
-        <Contact Id1="1" Id2="3" GammaNormal="1.300e+04" GammaTangential="1.300e+04" KineticFriction="0.50000"/>
-        <Contact Id1="1" Id2="4" GammaNormal="1.300e+04" GammaTangential="1.300e+04" KineticFriction="0.50000"/>
-        <Contact Id1="2" Id2="3" GammaNormal="1.300e+04" GammaTangential="1.300e+04" KineticFriction="0.50000"/>
-        <Contact Id1="2" Id2="4" GammaNormal="1.300e+04" GammaTangential="1.300e+04" KineticFriction="0.50000"/>
-        <Contact Id1="3" Id2="4" GammaNormal="1.300e+04" GammaTangential="1.300e+04" KineticFriction="0.50000"/>
+        <Contact Id1="concrete" Id2="concrete" GammaNormal="1.30e+04" GammaTangential="1.30e+04" KineticFriction="0.50"/>
+        <Contact Id1="concrete" Id2="human_clothes" GammaNormal="1.30e+04" GammaTangential="1.30e+04" KineticFriction="0.50"/>
+        <Contact Id1="concrete" Id2="human_naked" GammaNormal="1.30e+04" GammaTangential="1.30e+04" KineticFriction="0.50"/>
+        <Contact Id1="human_clothes" Id2="human_clothes" GammaNormal="1.30e+04" GammaTangential="1.30e+04" KineticFriction="0.50"/>
+        <Contact Id1="human_clothes" Id2="human_naked" GammaNormal="1.30e+04" GammaTangential="1.30e+04" KineticFriction="0.50"/>
+        <Contact Id1="human_naked" Id2="human_naked" GammaNormal="1.30e+04" GammaTangential="1.30e+04" KineticFriction="0.50"/>
     </Binary>
 </Materials>
 ```
@@ -84,23 +78,24 @@ Note that when calling the library, an absolute path to the Parameters file shou
 ### Geometry
 The Geometry file gives the dimensions of the area in which the simulation takes place, as well as information about obstacles.
 The latter as given as **Walls**, which are an ordered list of **Corners**. Each **Corner** is linked to its direct together by a line segment, forming a wall face. Here below an example:
-<figure>
-    <img src="./Geometry.png"
-         alt="An example of Geometry">
-</figure>
+<tr>
+  <td align="center" style="width:100%;">
+    <img src="./_static/walls_LEMONS_project.png" width="450" alt="An example of Geometry" style="display:block; margin:auto;">
+  </td>
+</tr>
 
 ```xml
 <?xml version="1.0" encoding="utf-8"?>
 <Geometry>
     <Dimensions Lx="11.57" Ly="4.7"/>
-    <Wall MaterialId="1">
+    <Wall Id="0" MaterialId="concrete">
         <Corner Coordinates="0.0,0.0"/>
         <Corner Coordinates="0.0,4.7"/>
         <Corner Coordinates="11.57,4.7"/>
         <Corner Coordinates="11.57,0.0"/>
         <Corner Coordinates="0.0,0.0"/>
     </Wall>
-    <Wall MaterialId="3">
+    <Wall Id="1" MaterialId="concrete">
         <Corner Coordinates="5.0,2.15"/>
         <Corner Coordinates="6.0,2.65"/>
         <Corner Coordinates="5.0,2.95"/>
@@ -124,54 +119,61 @@ Note that in the example, the first wall is actually enclosing the whole domain 
 ```xml
 <?xml version="1.0" encoding="utf-8"?>
 <Agents>
-    <Agent Type="pedestrian" Id="0" Mass="86.18248" MomentOfInertia="1.8012803784713227" FloorDamping="2.0" AngularDamping="5.0">
-        <Shape Id="0" Type="disk" Radius="0.09067151245046144" MaterialId="4" Position="-0.016965978638317853,0.16021913700431287"/>
-        <Shape Id="1" Type="disk" Radius="0.12468793467309253" MaterialId="4" Position="0.009540179910355141,0.07030548198489682"/>
-        <Shape Id="2" Type="disk" Radius="0.1303428066320288" MaterialId="4" Position="0.014851597455925514,-4.08006961549745e-17"/>
-        <Shape Id="3" Type="disk" Radius="0.12468793467309265" MaterialId="4" Position="0.009540179910355133,-0.0703054819848968"/>
-        <Shape Id="4" Type="disk" Radius="0.09067151245046151" MaterialId="4" Position="-0.016965978638317905,-0.1602191370043128"/>
+    <Agent Type="pedestrian" Id="0" Mass="90.72" Height="1.83" MomentOfInertia="2.05" FloorDamping="2.00" AngularDamping="2.00">
+        <Shape Type="disk" Radius="0.098" MaterialId="human_naked" Position="-0.017,0.164"/>
+        <Shape Type="disk" Radius="0.134" MaterialId="human_naked" Position="0.010,0.072"/>
+        <Shape Type="disk" Radius="0.141" MaterialId="human_naked" Position="0.015,0.000"/>
+        <Shape Type="disk" Radius="0.134" MaterialId="human_naked" Position="0.010,-0.072"/>
+        <Shape Type="disk" Radius="0.098" MaterialId="human_naked" Position="-0.017,-0.164"/>
     </Agent>
-    <Agent Type="pedestrian" Id="1" Mass="56.699" MomentOfInertia="0.9530544567910229" FloorDamping="2.0" AngularDamping="5.0">
-        <Shape Id="0" Type="disk" Radius="0.07121708834731487" MaterialId="4" Position="-0.016965978638317752,0.15769702291032459"/>
-        <Shape Id="1" Type="disk" Radius="0.09793496787989943" MaterialId="4" Position="0.00954017991035527,0.06919875746799978"/>
-        <Shape Id="2" Type="disk" Radius="0.10237653397942074" MaterialId="4" Position="0.014851597455925177,2.1038726316646717e-16"/>
-        <Shape Id="3" Type="disk" Radius="0.09793496787989944" MaterialId="4" Position="0.009540179910355131,-0.06919875746799974"/>
-        <Shape Id="4" Type="disk" Radius="0.07121708834731486" MaterialId="4" Position="-0.016965978638317808,-0.1576970229103248"/>
+    <Agent Type="pedestrian" Id="1" Mass="68.04" Height="1.75" MomentOfInertia="1.18" FloorDamping="2.00" AngularDamping="2.00">
+        <Shape Type="disk" Radius="0.069" MaterialId="human_naked" Position="-0.017,0.167"/>
+        <Shape Type="disk" Radius="0.095" MaterialId="human_naked" Position="0.010,0.073"/>
+        <Shape Type="disk" Radius="0.100" MaterialId="human_naked" Position="0.015,0.000"/>
+        <Shape Type="disk" Radius="0.095" MaterialId="human_naked" Position="0.010,-0.073"/>
+        <Shape Type="disk" Radius="0.069" MaterialId="human_naked" Position="-0.017,-0.167"/>
     </Agent>
-    <Agent Type="pedestrian" Id="2" Mass="108.86207999999999" MomentOfInertia="2.841391222285689" FloorDamping="2.0" AngularDamping="5.0">
-        <Shape Id="0" Type="disk" Radius="0.1042201294246675" MaterialId="4" Position="-0.016965978638318006,0.17565418070371278"/>
-        <Shape Id="1" Type="disk" Radius="0.14331946537700047" MaterialId="4" Position="0.009540179910355093,0.07707850677478216"/>
-        <Shape Id="2" Type="disk" Radius="0.1498193182140448" MaterialId="4" Position="0.014851597455925347,8.534839501805891e-18"/>
-        <Shape Id="3" Type="disk" Radius="0.14331946537700024" MaterialId="4" Position="0.009540179910355195,-0.07707850677478216"/>
-        <Shape Id="4" Type="disk" Radius="0.10422012942466749" MaterialId="4" Position="-0.01696597863831799,-0.17565418070371272"/>
+    <Agent Type="pedestrian" Id="2" Mass="74.39" Height="1.80" MomentOfInertia="1.39" FloorDamping="2.00" AngularDamping="2.00">
+        <Shape Type="disk" Radius="0.084" MaterialId="human_naked" Position="-0.017,0.156"/>
+        <Shape Type="disk" Radius="0.116" MaterialId="human_naked" Position="0.010,0.069"/>
+        <Shape Type="disk" Radius="0.121" MaterialId="human_naked" Position="0.015,0.000"/>
+        <Shape Type="disk" Radius="0.116" MaterialId="human_naked" Position="0.010,-0.069"/>
+        <Shape Type="disk" Radius="0.084" MaterialId="human_naked" Position="-0.017,-0.156"/>
     </Agent>
-    <Agent Type="pedestrian" Id="3" Mass="56.699" MomentOfInertia="0.8577106761230354" FloorDamping="2.0" AngularDamping="5.0">
-        <Shape Id="0" Type="disk" Radius="0.07920729808468932" MaterialId="4" Position="-0.016965978638317877,0.13119717737661835"/>
-        <Shape Id="1" Type="disk" Radius="0.10892279330414581" MaterialId="4" Position="0.00954017991035508,0.05757040615112575"/>
-        <Shape Id="2" Type="disk" Radius="0.11386268144295812" MaterialId="4" Position="0.014851597455925339,-3.691491556878646e-17"/>
-        <Shape Id="3" Type="disk" Radius="0.10892279330414578" MaterialId="4" Position="0.009540179910355254,-0.05757040615112579"/>
-        <Shape Id="4" Type="disk" Radius="0.0792072980846892" MaterialId="4" Position="-0.016965978638317905,-0.1311971773766183"/>
+    <Agent Type="pedestrian" Id="3" Mass="115.67" Height="1.83" MomentOfInertia="2.97" FloorDamping="2.00" AngularDamping="2.00">
+        <Shape Type="disk" Radius="0.102" MaterialId="human_naked" Position="-0.017,0.180"/>
+        <Shape Type="disk" Radius="0.140" MaterialId="human_naked" Position="0.010,0.079"/>
+        <Shape Type="disk" Radius="0.146" MaterialId="human_naked" Position="0.015,0.000"/>
+        <Shape Type="disk" Radius="0.140" MaterialId="human_naked" Position="0.010,-0.079"/>
+        <Shape Type="disk" Radius="0.102" MaterialId="human_naked" Position="-0.017,-0.180"/>
     </Agent>
-    <Agent Type="pedestrian" Id="4" Mass="54.431039999999996" MomentOfInertia="0.8358544321916865" FloorDamping="2.0" AngularDamping="5.0">
-        <Shape Id="0" Type="disk" Radius="0.07851249742150194" MaterialId="4" Position="-0.01696597863831797,0.13439281558771488"/>
-        <Shape Id="1" Type="disk" Radius="0.10796733047617478" MaterialId="4" Position="0.00954017991035518,0.05897267861920459"/>
-        <Shape Id="2" Type="disk" Radius="0.11286388627519121" MaterialId="4" Position="0.014851597455925512,-3.9968028886505634e-17"/>
-        <Shape Id="3" Type="disk" Radius="0.10796733047617481" MaterialId="4" Position="0.009540179910355256,-0.05897267861920454"/>
-        <Shape Id="4" Type="disk" Radius="0.07851249742150193" MaterialId="4" Position="-0.01696597863831796,-0.1343928155877149"/>
+    <Agent Type="pedestrian" Id="4" Mass="91.17" Height="1.83" MomentOfInertia="1.89" FloorDamping="2.00" AngularDamping="2.00">
+        <Shape Type="disk" Radius="0.088" MaterialId="human_naked" Position="-0.017,0.165"/>
+        <Shape Type="disk" Radius="0.122" MaterialId="human_naked" Position="0.010,0.073"/>
+        <Shape Type="disk" Radius="0.127" MaterialId="human_naked" Position="0.015,-0.000"/>
+        <Shape Type="disk" Radius="0.122" MaterialId="human_naked" Position="0.010,-0.073"/>
+        <Shape Type="disk" Radius="0.088" MaterialId="human_naked" Position="-0.017,-0.165"/>
     </Agent>
-    <Agent Type="pedestrian" Id="5" Mass="90.7184" MomentOfInertia="2.0128438381219813" FloorDamping="2.0" AngularDamping="5.0">
-        <Shape Id="0" Type="disk" Radius="0.0990091228159563" MaterialId="4" Position="-0.016965978638317888,0.15637147151866795"/>
-        <Shape Id="1" Type="disk" Radius="0.13615349191909604" MaterialId="4" Position="0.009540179910355509,0.0686170945578841"/>
-        <Shape Id="2" Type="disk" Radius="0.14232835210571448" MaterialId="4" Position="0.014851597455925363,-1.6653345369377347e-17"/>
-        <Shape Id="3" Type="disk" Radius="0.13615349191909606" MaterialId="4" Position="0.009540179910354931,-0.06861709455788402"/>
-        <Shape Id="4" Type="disk" Radius="0.09900912281595613" MaterialId="4" Position="-0.01696597863831782,-0.1563714715186678"/>
+    <Agent Type="pedestrian" Id="5" Mass="87.54" Height="1.90" MomentOfInertia="1.90" FloorDamping="2.00" AngularDamping="2.00">
+        <Shape Type="disk" Radius="0.088" MaterialId="human_naked" Position="-0.017,0.173"/>
+        <Shape Type="disk" Radius="0.122" MaterialId="human_naked" Position="0.010,0.076"/>
+        <Shape Type="disk" Radius="0.127" MaterialId="human_naked" Position="0.015,-0.000"/>
+        <Shape Type="disk" Radius="0.122" MaterialId="human_naked" Position="0.010,-0.076"/>
+        <Shape Type="disk" Radius="0.088" MaterialId="human_naked" Position="-0.017,-0.173"/>
     </Agent>
-    <Agent Type="pedestrian" Id="6" Mass="92.98636" MomentOfInertia="2.0706312801914812" FloorDamping="2.0" AngularDamping="5.0">
-        <Shape Id="0" Type="disk" Radius="0.09345071606342613" MaterialId="4" Position="-0.01696597863831782,0.16593658168559297"/>
-        <Shape Id="1" Type="disk" Radius="0.12850978730542723" MaterialId="4" Position="0.00954017991035518,0.07281434398200365"/>
-        <Shape Id="2" Type="disk" Radius="0.13433798868343216" MaterialId="4" Position="0.014851597455925425,-5.218048215738236e-17"/>
-        <Shape Id="3" Type="disk" Radius="0.12850978730542714" MaterialId="4" Position="0.009540179910355105,-0.07281434398200376"/>
-        <Shape Id="4" Type="disk" Radius="0.09345071606342621" MaterialId="4" Position="-0.01696597863831787,-0.16593658168559286"/>
+    <Agent Type="pedestrian" Id="6" Mass="95.25" Height="1.73" MomentOfInertia="2.33" FloorDamping="2.00" AngularDamping="2.00">
+        <Shape Type="disk" Radius="0.104" MaterialId="human_naked" Position="-0.017,0.168"/>
+        <Shape Type="disk" Radius="0.143" MaterialId="human_naked" Position="0.010,0.074"/>
+        <Shape Type="disk" Radius="0.149" MaterialId="human_naked" Position="0.015,0.000"/>
+        <Shape Type="disk" Radius="0.143" MaterialId="human_naked" Position="0.010,-0.074"/>
+        <Shape Type="disk" Radius="0.104" MaterialId="human_naked" Position="-0.017,-0.168"/>
+    </Agent>
+    <Agent Type="pedestrian" Id="7" Mass="98.88" Height="1.68" MomentOfInertia="2.41" FloorDamping="2.00" AngularDamping="2.00">
+        <Shape Type="disk" Radius="0.104" MaterialId="human_naked" Position="-0.017,0.168"/>
+        <Shape Type="disk" Radius="0.143" MaterialId="human_naked" Position="0.010,0.074"/>
+        <Shape Type="disk" Radius="0.149" MaterialId="human_naked" Position="0.015,0.000"/>
+        <Shape Type="disk" Radius="0.143" MaterialId="human_naked" Position="0.010,-0.074"/>
+        <Shape Type="disk" Radius="0.104" MaterialId="human_naked" Position="-0.017,-0.168"/>
     </Agent>
 </Agents>
 ```
@@ -198,32 +200,36 @@ Note that in the example, the first wall is actually enclosing the whole domain 
 <?xml version="1.0" encoding="utf-8"?>
 <Agents>
     <Agent Id="0">
-        <Kinematics Position="-0.3238412322203901,0.259771701823956" Velocity="0.0,0.0" Theta="-0.066937014534676" Omega="0.0"/>
-        <Dynamics Fp="1000.0,1000.0" Mp="0.0"/>
+        <Kinematics Position="1.115,0.362" Velocity="0.00,0.00" Theta="-0.29" Omega="0.00"/>
+        <Dynamics Fp="100.0,0.0" Mp="0.00"/>
     </Agent>
     <Agent Id="1">
-        <Kinematics Position="-0.4196349241832557,-0.60110130122263598" Velocity="0.0,0.0" Theta="-1.921604453854156" Omega="0.0"/>
-        <Dynamics Fp="1000.0,1000.0" Mp="0.0"/>
+        <Kinematics Position="0.211,0.235" Velocity="0.00,0.00" Theta="-0.48" Omega="0.00"/>
+        <Dynamics Fp="100.0,0.00" Mp="0.00"/>
     </Agent>
     <Agent Id="2">
-        <Kinematics Position="0.5535867845797549,0.05479066198570259" Velocity="0.0,0.0" Theta="0.040357044672756144" Omega="0.0"/>
-        <Dynamics Fp="1000.0,1000.0" Mp="0.0"/>
+        <Kinematics Position="0.239,0.920" Velocity="0.00,0.00" Theta="-0.16" Omega="0.00"/>
+        <Dynamics Fp="100.0,0.00" Mp="0.00"/>
     </Agent>
     <Agent Id="3">
-        <Kinematics Position="0.5509433024348762,-0.5054351424434713" Velocity="0.0,0.0" Theta="0.08475135886610266" Omega="0.0"/>
-        <Dynamics Fp="1000.0,1000.0" Mp="0.0"/>
+        <Kinematics Position="0.724,0.929" Velocity="0.00,0.00" Theta="0.35" Omega="0.00"/>
+        <Dynamics Fp="100.0,0.0" Mp="0.00"/>
     </Agent>
     <Agent Id="4">
-        <Kinematics Position="-0.017292568706642242,-0.5950742365642409" Velocity="0.0,0.0" Theta="-0.7694589274884652" Omega="0.0"/>
-        <Dynamics Fp="1000.0,1000.0" Mp="0.0"/>
+        <Kinematics Position="0.463,0.252" Velocity="0.00,0.00" Theta="-0.21" Omega="0.00"/>
+        <Dynamics Fp="100.0,0.0" Mp="0.00"/>
     </Agent>
     <Agent Id="5">
-        <Kinematics Position="0.4133925313777592,0.5507301162474092" Velocity="0.0,0.0" Theta="0.7290673029090031" Omega="0.0"/>
-        <Dynamics Fp="1000.0,1000.0" Mp="0.0"/>
+        <Kinematics Position="0.437,0.709" Velocity="0.00,0.00" Theta="-0.36" Omega="0.00"/>
+        <Dynamics Fp="100.0,0.0" Mp="0.00"/>
     </Agent>
     <Agent Id="6">
-        <Kinematics Position="-0.034584742853356644,0.47093271500912293" Velocity="0.0,0.0" Theta="0.5070191866356232" Omega="0.0"/>
-        <Dynamics Fp="1000.0,1000.0" Mp="0.0"/>
+        <Kinematics Position="0.757,0.299" Velocity="0.00,0.00" Theta="-0.20" Omega="0.00"/>
+        <Dynamics Fp="100.0,0.0" Mp="0.00"/>
+    </Agent>
+    <Agent Id="7">
+        <Kinematics Position="1.039,0.875" Velocity="0.00,0.00" Theta="-0.07" Omega="0.00"/>
+        <Dynamics Fp="100.0,0.0" Mp="0.00"/>
     </Agent>
 </Agents>
 ```
@@ -252,25 +258,28 @@ The output of ```CrowdMechanics``` will have the same structure, except that the
 <?xml version="1.0" encoding="utf-8"?>
 <Agents>
     <Agent Id="0">
-        <Kinematics Position="-0.269507,0.314106" Velocity="1.05166,1.05166" Theta="-0.066937" Omega="0"/>
+        <Kinematics Position="1.12016,0.362" Velocity="0.0999059,0" Theta="-0.29" Omega="0"/>
     </Agent>
     <Agent Id="1">
-        <Kinematics Position="-0.352324,-0.515387" Velocity="1.37579,1.38508" Theta="-1.92214" Omega="-0.110773"/>
+        <Kinematics Position="0.217882,0.235" Velocity="0.133208,0" Theta="-0.48" Omega="0"/>
     </Agent>
     <Agent Id="2">
-        <Kinematics Position="0.585494,0.0468851" Velocity="-0.00640525,0.0626351" Theta="0.0404432" Omega="-0.100961"/>
+        <Kinematics Position="0.245295,0.92" Velocity="0.121837,0" Theta="-0.16" Omega="0"/>
     </Agent>
     <Agent Id="3">
-        <Kinematics Position="0.621465,-0.441009" Velocity="-0.0029103,0.0656684" Theta="0.0886958" Omega="0.239468"/>
+        <Kinematics Position="0.728048,0.929" Velocity="0.0783562,0" Theta="0.35" Omega="0"/>
     </Agent>
     <Agent Id="4">
-        <Kinematics Position="0.012522,-0.597122" Velocity="0.250815,0.0201641" Theta="-0.882874" Omega="-0.991497"/>
+        <Kinematics Position="0.468136,0.252" Velocity="0.0994128,0" Theta="-0.21" Omega="0"/>
     </Agent>
     <Agent Id="5">
-        <Kinematics Position="0.442605,0.548886" Velocity="0.0826052,0.0454557" Theta="0.755286" Omega="0.407788"/>
+        <Kinematics Position="0.442349,0.709" Velocity="0.103535,0" Theta="-0.36" Omega="0"/>
     </Agent>
     <Agent Id="6">
-        <Kinematics Position="0.0150781,0.519899" Velocity="0.498381,0.0220522" Theta="0.507439" Omega="0.286958"/>
+        <Kinematics Position="0.761916,0.299" Velocity="0.0951545,0" Theta="-0.2" Omega="0"/>
+    </Agent>
+    <Agent Id="7">
+        <Kinematics Position="1.04374,0.875" Velocity="0.0916612,0" Theta="-0.07" Omega="0"/>
     </Agent>
 </Agents>
 ```
