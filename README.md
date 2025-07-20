@@ -53,6 +53,19 @@ Cite us:
   </td>
 </tr>
 
+## An example of a crowd simulation
+<tr>
+  <td align="center" style="width:100%;">
+    <img src="./data/images/practical_case.png" width="450" alt="An example of a crowd simulation." style="display:block; margin:auto;">
+  </td>
+</tr>
+
+## An example of a 3D crowd
+<tr>
+  <td align="center" style="width:100%;">
+    <img src="./data/images/3D_crowd.png" width="450" alt="A crowd in 3D." style="display:block; margin:auto;">
+  </td>
+</tr>
 
 ## License
 Every part of `LEMONS` is available under the [`CeCILL-B`](https://cecill.info/licences.fr.html) license.
