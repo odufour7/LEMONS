@@ -29,6 +29,7 @@
 #define SRC_MECHANICAL_LAYER_INCLUDE_GLOBAL_H_
 
 #include <cmath>
+#include <cstdint>
 #include <iostream>
 #include <list>
 #include <map>
