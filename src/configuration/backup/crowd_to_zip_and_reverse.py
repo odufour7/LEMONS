@@ -6,8 +6,8 @@
 # This software is a computer program designed to generate a realistic crowd from anthropometric data and
 # simulate the mechanical interactions that occur within it and with obstacles.
 
-# This software is governed by the CeCILL  license under French law and abiding by the rules of distribution
-# of free software.  You can  use, modify and/ or redistribute the software under the terms of the CeCILL
+# This software is governed by the CeCILL-B license under French law and abiding by the rules of distribution
+# of free software.  You can  use, modify and/ or redistribute the software under the terms of the CeCILL-B
 # license as circulated by CEA, CNRS and INRIA at the following URL "http://www.cecill.info".
 
 # As a counterpart to the access to the source code and  rights to copy, modify and redistribute granted by
@@ -22,7 +22,7 @@
 # the security of their systems and/or data to be ensured and,  more generally, to use and operate it in the
 # same conditions as regards security.
 
-# The fact that you are presently reading this means that you have had knowledge of the CeCILL license and that
+# The fact that you are presently reading this means that you have had knowledge of the CeCILL-B license and that
 # you accept its terms.
 
 import io
