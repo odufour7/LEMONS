@@ -1,7 +1,7 @@
 Configuration files
 ===================
 
-You can try out the Streamlit application online at `app <https://crowdmecha.streamlit.app/>`_.
+You can try out the Streamlit application online at `app <https://lemons.streamlit.app/>`_.
 If you prefer to run the application locally or want to use only specific functions, follow the step-by-step advanced tutorials.
 
 
