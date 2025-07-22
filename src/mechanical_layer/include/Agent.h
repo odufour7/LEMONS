@@ -55,12 +55,12 @@ struct Agent
     double _vx;          ///< x-component of the velocity of the center of mass
     double _vy;          ///< y-component of the velocity of the center of mass
     double _w;           ///<  Angular velocity of the agent
+    double2 _Fp;         ///<  Driving force on the agent, with the dimension of an acceleration
     double _vx_des;      ///<  x-component of the desired velocity of the agent
     double _vy_des;      ///<  y-component of the desired velocity of the agent
     double _w_des;       ///<  Desired angular velocity of the agent
     double _theta_des;   ///<  Desired orientation of the agent (orientation of the desired velocity)
 
-    double2 _v_des;                                               ///< Norm (N2) of the desired velocity
     std::list<unsigned> _neighbours;                              ///<  List of neighbours
     std::list<std::pair<unsigned, unsigned>> _neighbours_walls;   ///<  List of neighbouring walls
 

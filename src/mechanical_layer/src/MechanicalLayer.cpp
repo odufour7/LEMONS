@@ -110,9 +110,8 @@ MechanicalLayer::MechanicalLayer(list<Agent*>& mech_active_agents)
         thetnp1[cpt_agent] = agent->_theta;
         vgnp1[cpt_agent] = double2(agent->_vx, agent->_vy);
         wnp1[cpt_agent] = agent->_w;
-        const double inverseTauMechTranslation = agentProperties[agent->_id].first;
         //  The "F" here have the dimension of an acceleration
-        Fp[cpt_agent] = inverseTauMechTranslation * agent->_v_des;   //  We recompute Fp from v_des...
+        Fp[cpt_agent] = agent->_Fp;
         Forthon[cpt_agent] = double2(0., 0.);
         Ftn[cpt_agent] = double2(0., 0.);
         taun[cpt_agent] = 0.;

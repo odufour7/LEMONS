@@ -211,16 +211,16 @@ int updateSetting(const string& dynamicsFile)
         agents[a]->_vx = velocity.first;
         agents[a]->_vy = velocity.second;
         agents[a]->_w = omega;
+        agents[a]->_Fp = (1 / agents[a]->_mass) * Fp;
         const double inverseTauMechTranslation = agentProperties[a].first;
         const double inverseTauMechRotation = agentProperties[a].second;
-        agents[a]->_vx_des = Fp.first / inverseTauMechTranslation / agents[a]->_mass;   //  vx_des := Fpx/m * tau_mech
-        agents[a]->_vy_des = Fp.second / inverseTauMechTranslation / agents[a]->_mass;
+        agents[a]->_vx_des = agents[a]->_Fp.first / inverseTauMechTranslation;   //  vx_des := Fpx/m * tau_mech
+        agents[a]->_vy_des = agents[a]->_Fp.second / inverseTauMechTranslation;
         agents[a]->_w_des = Mp / inverseTauMechRotation / agents[a]->_moi;   //  w_des  := Mp/I  * tau_mech
         if (!(agents[a]->_vx_des == 0. && agents[a]->_vy_des == 0.))
             agents[a]->_theta_des = atan2(agents[a]->_vy_des, agents[a]->_vx_des);
         else
             agents[a]->_theta_des = 0.;
-        agents[a]->_v_des = double2(agents[a]->_vx_des, agents[a]->_vy_des);
         agents[a]->_neighbours.clear();
 
         agentElement = agentElement->NextSiblingElement("Agent");
