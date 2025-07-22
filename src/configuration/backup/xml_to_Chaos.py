@@ -58,7 +58,7 @@ def get_list_of_agents_and_times_from_XML(
 
     Notes
     -----
-    Assumes XML files are named with the pattern 'AgentDyn...output t=<time>.xml'.
+    Assumes XML files are named with the pattern 'AgentDyn...input t=<time>.xml'.
     """
     folder_path.mkdir(parents=True, exist_ok=True)
 
@@ -69,10 +69,11 @@ def get_list_of_agents_and_times_from_XML(
     for fichier in folder_path.iterdir():
         if fichier.is_file() and fichier.name.startswith("AgentDyn") and fichier.name.endswith("xml"):
             print(f"Processing file: {fichier}")
-            m = re.fullmatch(r".*output t=(" + regex_nb + r").xml", str(fichier))
+            pattern = re.compile(rf".*(input|output) t=({regex_nb})\.xml")
+            m = pattern.fullmatch(str(fichier))
             if not m:
                 continue
-            time_loc = float(m.group(1))
+            time_loc = float(m.group(2))
             times.append(time_loc)
             filenames[int(1000 * time_loc)] = str(fichier)
 
