@@ -262,7 +262,7 @@ void determine_agents_neighbours()
             {
                 auto [distance, closest_point] = get_distance_to_wall_and_closest_point(
                     listObstacles[iobs][iwall], listObstacles[iobs][iwall + 1], agent1->get_r());
-                if (distance < criticalDistanceWall)
+                if (distance < criticalDistanceWall + agent1->_radius)
                     agent1->_neighbours_walls.emplace_back(iobs, iwall);
             }
         }
@@ -273,7 +273,7 @@ void determine_agents_neighbours()
 
             const double2 r1 = agent1->get_r();
             const double2 r2 = agent2->get_r();
-            if (const double r = get_distance(r1, r2); r < criticalDistance)
+            if (const double r = get_distance(r1, r2); r < criticalDistance + agent1->_radius + agent2->_radius)
             {
                 agent1->_neighbours.push_back(agent2->_id);
                 agent2->_neighbours.push_back(agent1->_id);
