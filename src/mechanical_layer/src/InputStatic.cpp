@@ -461,6 +461,11 @@ int readAgents(const std::string& file, std::vector<unsigned>& nShapesPerAgent, 
             cerr << "Error: for agent " << externId << ": rotational damping (AngularDamping) not provided! " << endl;
             return EXIT_FAILURE;
         }
+        if (dampingTranslational == 0.0 || dampingRotational == 0.0)
+        {
+            cerr << "Error: you must input non-zero dampings for each agent: " << endl;
+            return EXIT_FAILURE;
+        }
         agentProperties.emplace_back(dampingTranslational, dampingRotational);
 
         //  Shapes
