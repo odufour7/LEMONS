@@ -160,7 +160,7 @@ int updateSetting(const string& dynamicsFile)
         auto [rcPosition, position] = parse2DComponents(buffer);
         if (rcPosition != EXIT_SUCCESS)
         {
-            cerr << "Error: Could not parse corner coordinates from XML file " << dynamicsFile << endl;
+            cerr << "Error: Could not parse position coordinates from XML file " << dynamicsFile << endl;
             return EXIT_FAILURE;
         }
 
@@ -172,7 +172,7 @@ int updateSetting(const string& dynamicsFile)
         auto [rcVelocity, velocity] = parse2DComponents(buffer);
         if (rcVelocity != EXIT_SUCCESS)
         {
-            cerr << "Error: Could not parse corner coordinates from XML file " << dynamicsFile << endl;
+            cerr << "Error: Could not parse velocity coordinates from XML file " << dynamicsFile << endl;
             return EXIT_FAILURE;
         }
         double theta, omega;
@@ -195,7 +195,7 @@ int updateSetting(const string& dynamicsFile)
         auto [rcFp, Fp] = parse2DComponents(buffer);
         if (rcFp != EXIT_SUCCESS)
         {
-            cerr << "Error: Could not parse corner coordinates from XML file " << dynamicsFile << endl;
+            cerr << "Error: Could not parse driving force coordinates from XML file " << dynamicsFile << endl;
             return EXIT_FAILURE;
         }
         double Mp;
