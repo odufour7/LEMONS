@@ -50,7 +50,7 @@ NB_FUNCTION_EVALS: int = 80  # Number of function evaluations
 DISK_NUMBER: int = 5
 
 DEFAULT_FLOOR_DAMPING: float = 2.0  # Damping coefficient for the floor
-DEFAULT_ANGULAR_DAMPING: float = 20.0  # Damping coefficient for the angular velocity
+DEFAULT_ANGULAR_DAMPING: float = 2.0  # Damping coefficient for the angular velocity
 EPSILON_SMOOTHING_KNEES: float = 8.0  # Small value for smoothing
 EPSILON_SMOOTHING_NECK: float = 2.0  # Small value for smoothing
 NECK_HEIGHT_MALE: float = 160.0  # Height of the neck in cm
@@ -95,8 +95,8 @@ DEFAULT_BIKE_WEIGHT: float = 30.0  # kg
 DEFAULT_PEDESTRIAN_WEIGHT: float = 70.0  # kg
 
 # Decisional force and torque
-DECISIONAL_TRANSLATIONAL_FORCE_X: float = 10.0**3  # N
-DECISIONAL_TRANSLATIONAL_FORCE_Y: float = 10.0**3  # N
+DECISIONAL_TRANSLATIONAL_FORCE_X: float = 10.0**2  # N
+DECISIONAL_TRANSLATIONAL_FORCE_Y: float = 10.0**2  # N
 DECISIONAL_TORQUE: float = 0.0  # N.m
 
 # Initial velocity
