@@ -14,6 +14,7 @@ Ndt = 120  # How many dt will be performed in total
 outputPath = Path("outputXML/")  # Directory to store output XML files
 inputPath = Path("inputXML/")  # Directory to store input XML files
 outputPath.mkdir(parents=True, exist_ok=True)  # Create directories if they don't exist
+Path("dynamic/").mkdir(parents=True, exist_ok=True)
 inputPath.mkdir(parents=True, exist_ok=True)
 # Clean the input and output directory before starting
 for file in list(inputPath.glob("*.xml")) + list(outputPath.glob("*.xml")) + list(Path("dynamic/").glob("*.xml")):
