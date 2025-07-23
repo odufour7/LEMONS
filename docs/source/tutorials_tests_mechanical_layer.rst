@@ -1,4 +1,4 @@
-How to test ```CrowdMechanics```
+How to test ``CrowdMechanics``
 ================================
 
 After modifying the C++ code, you can run a series of eight tests (covering distinct scenarios) by following the steps below:
