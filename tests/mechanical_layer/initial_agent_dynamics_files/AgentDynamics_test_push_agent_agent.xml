@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Agents>
+    <Agent Id="0">
+        <Kinematics Position="0.736,1.000" Velocity="1.50,0.00" Theta="0.00" Omega="0.00"/>
+        <Dynamics Fp="0.00,0.00" Mp="0.00"/>
+    </Agent>
+    <Agent Id="1">
+        <Kinematics Position="1.259,1.000" Velocity="0.00,0.00" Theta="0.00" Omega="0.00"/>
+        <Dynamics Fp="0.00,0.00" Mp="0.00"/>
+    </Agent>
+</Agents>

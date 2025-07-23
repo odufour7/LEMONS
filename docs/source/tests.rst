@@ -5,4 +5,3 @@ Tests
    :maxdepth: 4
 
    tests.configuration
-   tests.mechanical_layer

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Geometry>
+    <Dimensions Lx="3.000" Ly="1.00"/>
+    <Wall Id="0" MaterialId="concrete">
+        <Corner Coordinates="0.000,0.000"/>
+        <Corner Coordinates="3.000,0.000"/>
+        <Corner Coordinates="3.000,1.00"/>
+        <Corner Coordinates="0.000,1.00"/>
+        <Corner Coordinates="0.000,0.000"/>
+    </Wall>
+</Geometry>

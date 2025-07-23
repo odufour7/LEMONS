@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Agents>
+    <Agent Type="pedestrian" Id="0" Mass="90.72" Height="1.78" MomentOfInertia="2.10" FloorDamping="2.00" AngularDamping="2.0">
+        <Shape Type="disk" Radius="0.100" MaterialId="human_naked" Position="-0.017,0.165"/>
+        <Shape Type="disk" Radius="0.137" MaterialId="human_naked" Position="0.010,0.073"/>
+        <Shape Type="disk" Radius="0.144" MaterialId="human_naked" Position="0.015,-0.000"/>
+        <Shape Type="disk" Radius="0.137" MaterialId="human_naked" Position="0.010,-0.073"/>
+        <Shape Type="disk" Radius="0.100" MaterialId="human_naked" Position="-0.017,-0.165"/>
+    </Agent>
+    <Agent Type="pedestrian" Id="1" Mass="100.24" Height="1.78" MomentOfInertia="2.53" FloorDamping="2.00" AngularDamping="2.00">
+        <Shape Type="disk" Radius="0.104" MaterialId="human_naked" Position="-0.017,0.172"/>
+        <Shape Type="disk" Radius="0.144" MaterialId="human_naked" Position="0.010,0.076"/>
+        <Shape Type="disk" Radius="0.150" MaterialId="human_naked" Position="0.015,-0.000"/>
+        <Shape Type="disk" Radius="0.144" MaterialId="human_naked" Position="0.010,-0.076"/>
+        <Shape Type="disk" Radius="0.104" MaterialId="human_naked" Position="-0.017,-0.172"/>
+    </Agent>
+</Agents>
