@@ -116,7 +116,7 @@ pair<int, double2> parse2DComponents(const char* line)
         double value;
         try
         {
-            value = stod(token);
+            value = strtod(token.c_str(), nullptr);
         }
         catch (...)
         {
