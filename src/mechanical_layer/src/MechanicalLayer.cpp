@@ -783,8 +783,7 @@ void MechanicalLayer::generateInteractionsOutputFile(const string& interactionsF
                 }
                 outputDoc << "        <Wall ShapeId=\"" << (shape - agentIDshape[agentActiveIds[agent]]) << "\" "
                           << "WallId=\"" << get<1>(key) << "\" CornerId=\"" << get<2>(key) << "\" ";
-                if (output[SLIP] != double2(0., 0.))
-                    outputDoc << "TangentialRelativeDisplacement=\"" << output[SLIP].first << "," << output[SLIP].second << "\" ";
+                outputDoc << "TangentialRelativeDisplacement=\"" << output[SLIP].first << "," << output[SLIP].second << "\" ";
                 if (output[FORCE_ORTHO] != double2(0., 0.))
                     outputDoc << "Fn=\"" << output[FORCE_ORTHO].first << "," << output[FORCE_ORTHO].second << "\" ";
                 if (output[FORCE_TAN] != double2(0., 0.))
