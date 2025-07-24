@@ -129,8 +129,7 @@ int updateSetting(const string& dynamicsFile)
     {
         const char* agentId = nullptr;
         uint32_t a;
-        agentElement->QueryStringAttribute("Id", &agentId);
-        if (!agentId)
+        if (agentElement->QueryStringAttribute("Id", &agentId) != tinyxml2::XML_SUCCESS)
         {
             cerr << "Error: agent tag with no id in dynamics file" << endl;
             return EXIT_FAILURE;
@@ -298,8 +297,15 @@ void handleMechanicalLayer(const std::string& dynamicsFile)
     /*  Handle mechanically active agents: mechanical layer */
     if (get_future_collision())
     {
-        const MechanicalLayer* crowdMech = new MechanicalLayer(mech_active_agents);
-        delete crowdMech;
+        try
+        {
+            const MechanicalLayer* crowdMech = new MechanicalLayer(mech_active_agents);
+            delete crowdMech;
+        }
+        catch (const std::exception& e)
+        {
+            exit(EXIT_FAILURE);
+        }
     }
 
     /*  Handle non mechanically active agents: simple positional update */

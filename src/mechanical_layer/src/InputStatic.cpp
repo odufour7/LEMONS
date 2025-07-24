@@ -235,8 +235,16 @@ int readMaterials(const std::string& file, std::map<std::string, int32_t>& mater
     {
         const char* id1 = nullptr;
         const char* id2 = nullptr;
-        relationshipElement->QueryStringAttribute("Id1", &id1);
-        relationshipElement->QueryStringAttribute("Id2", &id2);
+        if (relationshipElement->QueryStringAttribute("Id1", &id1) != tinyxml2::XML_SUCCESS)
+        {
+            cerr << "Error: no Id1 in binary property in " << file << endl;
+            return EXIT_FAILURE;
+        }
+        if (relationshipElement->QueryStringAttribute("Id2", &id2) != tinyxml2::XML_SUCCESS)
+        {
+            cerr << "Error: no Id2 in binary property in " << file << endl;
+            return EXIT_FAILURE;
+        }
         if (!materialMapping.contains(id1) || !materialMapping.contains(id2))
         {
             cerr << "Error: relationships include unknown material ids " << id1 << "or " << id2 << "." << endl;
@@ -333,7 +341,11 @@ int readGeometry(const std::string& file, std::map<std::string, int32_t>& materi
     {
         //  Fetch material
         const char* materialId = nullptr;
-        wallElement->QueryStringAttribute("MaterialId", &materialId);
+        if (wallElement->QueryStringAttribute("MaterialId", &materialId) != tinyxml2::XML_SUCCESS)
+        {
+            cerr << "Error: no material mentioned for wall on geometry file " << file << endl;
+            return EXIT_FAILURE;
+        }
         if (!materialId || !materialMapping.contains(materialId))
         {
             cerr << "Error: unknown or absent material id " << materialId << " given for one of the walls" << endl;
@@ -445,9 +457,15 @@ int readAgents(const std::string& file, std::vector<unsigned>& nShapesPerAgent, 
         //  Mass and Moment of Inertia
         double mass, moi;
         if (agentElement->QueryDoubleAttribute("Mass", &mass) != tinyxml2::XML_SUCCESS)
+        {
             cerr << "Error: could not get mass from agent " << externId << endl;
+            return EXIT_FAILURE;
+        }
         if (agentElement->QueryDoubleAttribute("MomentOfInertia", &moi) != tinyxml2::XML_SUCCESS)
+        {
             cerr << "Error: could not get moment of inertia from agent " << externId << endl;
+            return EXIT_FAILURE;
+        }
         masses.push_back(mass);
         mois.push_back(moi);
         double dampingTranslational, dampingRotational;
@@ -482,10 +500,14 @@ int readAgents(const std::string& file, std::vector<unsigned>& nShapesPerAgent, 
             shapeIDagent.push_back(agentId);
             //  Fetch material
             const char* materialId = nullptr;
-            shapeElement->QueryStringAttribute("MaterialId", &materialId);
-            if (!materialId || !materialMapping.contains(materialId))
+            if (shapeElement->QueryStringAttribute("MaterialId", &materialId) != tinyxml2::XML_SUCCESS)
             {
-                cerr << "Error: unknown or absent material id " << materialId << "given for one of the shapes." << endl;
+                cerr << "Error: no material mentioned for agent in " << file << endl;
+                return EXIT_FAILURE;
+            }
+            if (!materialMapping.contains(materialId))
+            {
+                cerr << "Error: unknown material id " << materialId << "given for one of the shapes." << endl;
                 return EXIT_FAILURE;
             }
             else

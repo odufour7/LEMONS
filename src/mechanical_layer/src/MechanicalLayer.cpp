@@ -41,7 +41,7 @@
 #include "../3rdparty/tinyxml/tinyxml2.h"
 
 using std::list, std::map, std::set, std::vector, std::string, std::tuple, std::pair, std::cout, std::cerr, std::endl, std::ofstream,
-    std::fmin;
+    std::fmin, std::runtime_error;
 
 /**
  * @brief Constructor for the MechanicalLayer class.
@@ -158,7 +158,8 @@ MechanicalLayer::MechanicalLayer(list<Agent*>& mech_active_agents)
     const string interactionsFile = pathDynamic + "AgentInteractions.xml";
     struct stat buffer{};
     if (stat(interactionsFile.c_str(), &buffer) != -1)
-        readInteractionsInputFile(interactionsFile);
+        if (readInteractionsInputFile(interactionsFile) == EXIT_FAILURE)
+            throw runtime_error("Issue while reading interactions file");
 
     /*  MECHANICAL Loop */
     for (unsigned t = 0; t < static_cast<unsigned>(dt / dt_mech); t++)
@@ -259,8 +260,17 @@ int MechanicalLayer::readInteractionsInputFile(const std::string& interactionsFi
                     return EXIT_FAILURE;
                 }
                 const char* buffer = nullptr;
-                interactionElement->QueryStringAttribute("TangentialRelativeDisplacement", &buffer);
+                if (interactionElement->QueryStringAttribute("TangentialRelativeDisplacement", &buffer) != tinyxml2::XML_SUCCESS)
+                {
+                    cerr << "Error: no tangential relative displacement in one of the interactions of " << interactionsFile << endl;
+                    return EXIT_FAILURE;
+                }
                 auto [rcSlip, inputSlip] = parse2DComponents(buffer);
+                if (rcSlip != EXIT_SUCCESS)
+                {
+                    cerr << "Error: Could not parse components of tangential relative displacement in " << interactionsFile << endl;
+                    return EXIT_FAILURE;
+                }
                 uint32_t cpt_shape = agentIDshape[agentIds[agentMap[agent1ExternId]]] + shapeParent;
                 uint32_t cpt_shape_neigh = agentIDshape[agentIds[agentMap[agent2ExternId]]] + shapeChild;
 
@@ -277,13 +287,34 @@ int MechanicalLayer::readInteractionsInputFile(const std::string& interactionsFi
         while (wallElement)
         {
             int32_t shape;
-            wallElement->QueryIntAttribute("ShapeId", &shape);
+            if (wallElement->QueryIntAttribute("ShapeId", &shape) != tinyxml2::XML_SUCCESS)
+            {
+                cerr << "Error: no shape identifier in interaction between agent and wall in " << interactionsFile << endl;
+                return EXIT_FAILURE;
+            }
             int iobs, iwall;
-            wallElement->QueryIntAttribute("WallId", &iobs);
-            wallElement->QueryIntAttribute("CornerId", &iwall);
+            if (wallElement->QueryIntAttribute("WallId", &iobs) != tinyxml2::XML_SUCCESS)
+            {
+                cerr << "Error: no obstacle identifier in interaction between agent and wall in " << interactionsFile << endl;
+                return EXIT_FAILURE;
+            }
+            if (wallElement->QueryIntAttribute("CornerId", &iwall) != tinyxml2::XML_SUCCESS)
+            {
+                cerr << "Error: no wall identifier in interaction between agent and wall in " << interactionsFile << endl;
+                return EXIT_FAILURE;
+            }
             const char* buffer = nullptr;
-            wallElement->QueryStringAttribute("TangentialRelativeDisplacement", &buffer);
+            if (wallElement->QueryStringAttribute("TangentialRelativeDisplacement", &buffer) != tinyxml2::XML_SUCCESS)
+            {
+                cerr << "Error: no tangential relative displacement in interaction between agent and wall in " << interactionsFile << endl;
+                return EXIT_FAILURE;
+            }
             auto [rcSlipWall, inputSlipWall] = parse2DComponents(buffer);
+            if (rcSlipWall != EXIT_SUCCESS)
+            {
+                cerr << "Error: Could not parse components of tangential relative displacement between agent and wall in " << interactionsFile << endl;
+                return EXIT_FAILURE;
+            }
             uint32_t cpt_shape = agentIDshape[agentIds[agentMap[agent1ExternId]]] + shape;
             slip_wall[{cpt_shape, iobs, iwall}] = inputSlipWall;
 
