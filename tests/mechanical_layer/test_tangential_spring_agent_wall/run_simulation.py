@@ -100,7 +100,7 @@ for t in range(Ndt):
         if dyn_elem is None:
             dyn_elem = ET.SubElement(agent, "Dynamics")
 
-        dyn_elem.set("Fp", "100.0,100.0")
+        dyn_elem.set("Fp", "150.0,50.0")
         dyn_elem.set("Mp", "0.0")
 
     # Write the modified XML back, to be used in the next iteration
