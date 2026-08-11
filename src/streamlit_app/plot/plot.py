@@ -468,7 +468,7 @@ def display_body3D_mesh(
     color_scale_name = "viridis" if agent.measures.measures["sex"] == "male" else "inferno"
     norm = Normalize(vmin=np.min(points_filled[:, 2]), vmax=np.max(points_filled[:, 2]))
     colorscale_values = norm(points_filled[:, 2])
-    colorscale_values = plt.cm.get_cmap(color_scale_name)(colorscale_values)[:, :3]
+    colorscale_values = plt.get_cmap(color_scale_name)(colorscale_values)[:, :3]
     vertex_colors = [f"rgb({int(r * 255)}, {int(g * 255)}, {int(b * 255)})" for r, g, b in colorscale_values]
 
     logging.info("Plotting...")
