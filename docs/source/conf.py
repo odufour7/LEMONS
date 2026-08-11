@@ -12,10 +12,6 @@ sys.path.insert(0, os.path.abspath("../../tests/configuration"))
 sys.path.insert(0, os.path.abspath("../../tests/mechanical_layer"))
 smartquotes = False
 
-os.environ["KIVY_NO_ARGS"] = "1"  # Disable Kivy's argument parsing
-os.environ["KIVY_NO_CONFIG"] = "1"  # Disable Kivy config checks during docs build
-os.environ["KIVY_NO_CONSOLELOG"] = "1"  # Disable Kivy console logging during docs build
-
 # -- Project information -----------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#project-information
 
@@ -77,7 +73,7 @@ autodoc_default_options = {
 
 autodoc_typehints = "description"  # Show type hints in the description section of the docstring
 autodoc_member_order = "bysource"  # Order members by their source code order
-autodoc_mock_imports = ["kivy", "streamlit"]
+autodoc_mock_imports = ["streamlit"]
 
 
 # -- Exhale configuration ----------------------------------------------------
