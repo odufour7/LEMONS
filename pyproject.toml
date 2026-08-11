@@ -13,18 +13,18 @@ keywords = [
     "non-circular shapes",
 ]
 readme = "README.md"
-requires-python = ">=3.13"
+requires-python = ">=3.14"
 authors = [
     { name = "Oscar DUFOUR", email = "oscar.dufour@univ-lyon1.fr" },
     { name = "Maxime STAPELLE", email = "maxime.stapelle@univ-lyon1.fr" },
     { name = "Alexandre NICOLAS", email = "alexandre.nicolas@univ-lyon1.fr" },
 ]
 license = "CECILL-B"
-license-files = ["LICEN[CS]E.txt"]
+license-files = ["LICENSE.txt"]
 classifiers = [
     "Operating System :: MacOS",
     "Operating System :: POSIX :: Linux",
-    "Programming Language :: Python :: 3.13",
+    "Programming Language :: Python :: 3.14",
 ]
 
 dependencies = [
@@ -33,16 +33,16 @@ dependencies = [
     "gprof2dot>=2025.4.14",
     "jupyter>=1.1.1",
     "kaleido>=1.2.0",
-    "kivy>=2.3.1",
     "matplotlib>=3.10.3",
     "numpy>=2.2.6",
     "pandas>=2.2.3",
     "pedpy>=1.4.0",
     "plotly>=6.1.1",
+    "pyarrow>=22,<25",
     "pyvista>=0.45.2",
     "scipy>=1.15.3",
     "shapely>=2.1.1",
-    "streamlit>=1.45.1",
+    "streamlit>=1.56.0",
     "streamlit-option-menu>=0.4.0",
     "watchdog>=6.0.0",
     "xmltodict>=0.14.2",
@@ -76,7 +76,7 @@ Homepage = "https://github.com/Crowd-Mechanics/LEMONS"
 Issues = "https://github.com/Crowd-Mechanics/LEMONS/issues"
 
 [build-system]
-requires = ["setuptools", "wheel", "pandoc"]
+requires = ["setuptools", "wheel"]
 build-backend = "setuptools.build_meta"
 
 [tool.setuptools.packages.find]
